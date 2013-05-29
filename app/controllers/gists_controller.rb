@@ -13,4 +13,13 @@ class GistsController < ApplicationController
 			redirect_to new_session_url
 		end
 	end
+
+	def create
+		@gist = current_user.gists.new(params[:gist])
+		if @gist.save
+			render json: @gist
+		else
+			render json: @gist.errors.full_messages, status: 422
+		end
+	end
 end
