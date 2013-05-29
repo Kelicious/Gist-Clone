@@ -1,8 +1,13 @@
 Gistclone::Application.routes.draw do
-	root to: 'sessions#new'
+	root to: 'gists#index'
 
 	resource :session, only: [:new, :create, :destroy]
 	resources :users
+	resources :favorites, only: [:index]
+	resources :gists do
+		resource :favorite, only: [:create, :destroy]
+	end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,12 @@
+<%= content_tag "div", "", id: "content", data: {favorites: Favorite.all} %>
+
+<script type="text/javascript">
+  $(function() {
+    var gistsData = <%= @gists.to_json.html_safe %>;
+
+    window.G.initialize(
+      $("#content"),
+      gistsData
+    );
+  });
+</script>

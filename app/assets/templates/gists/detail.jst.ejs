@@ -1,0 +1,8 @@
+<h2><%= gist.escape("title") %></h2>
+
+<% console.log(gist) %>
+<% if (gist.favorited) { %>
+  <button class="unfavorite">Unfavorite</button>
+<% } else { %>
+  <button class="favorite">Favorite</button>
+<% } %>
