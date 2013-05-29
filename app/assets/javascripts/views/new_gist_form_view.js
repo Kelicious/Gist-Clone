@@ -1,5 +1,3 @@
-var Gist = Backbone.Model.extend
-
 G.Views.NewGistFormView = Backbone.View.extend({
 
   events: {
@@ -13,6 +11,11 @@ G.Views.NewGistFormView = Backbone.View.extend({
     that.form = new Backbone.Form({
       model: that.gist
     }).render();
+
+    that.gist.gistFile = new G.Models.GistFile();
+    that.gistFileFormView = new G.Views.NewGistFileFormView({
+      model: that.gist.gistFileFormView
+    });
 
     that.$el.html(that.form.el);
     that.$el.append("<button class='submit'>submit</button>");

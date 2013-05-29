@@ -1,7 +1,10 @@
 class CreateGistFiles < ActiveRecord::Migration
-  def up
-  end
+  def change
+		create_table :gist_files do |t|
+			t.integer :gist_id
+			t.text :body
+		end
 
-  def down
+		add_index :gist_files, :gist_id
   end
 end
