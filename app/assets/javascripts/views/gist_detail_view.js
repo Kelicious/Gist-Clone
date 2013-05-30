@@ -9,6 +9,8 @@ G.Views.GistDetailView = Backbone.View.extend({
     var that = this;
     var renderCallback = that.render.bind(that);
     that.favorites.on('change', renderCallback);
+    that.favorites.on('add', renderCallback);
+    that.favorites.on('remove', renderCallback);
   },
 
   render: function () {
@@ -35,9 +37,7 @@ G.Views.GistDetailView = Backbone.View.extend({
     $.post('/gists/' + that.model.get('id') + '/favorite')
     .done(function () {
       console.log("Favorited!");
-      that.favorites.fetch().done(function() {
-        that.favorites.trigger('change')
-      });
+      that.favorites.fetch().done();
     })
     .fail(function (response) {
       console.log(response);
@@ -51,9 +51,7 @@ G.Views.GistDetailView = Backbone.View.extend({
     $.post('/gists/' + that.model.get('id') + '/favorite', { _method: "delete" })
     .done(function () {
       console.log("Unfavorited!");
-      that.favorites.fetch().done(function() {
-        that.favorites.trigger('change')
-      });
+      that.favorites.fetch().done();
     })
     .fail(function (response) {
       console.log(response);

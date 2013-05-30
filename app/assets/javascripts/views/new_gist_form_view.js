@@ -14,7 +14,7 @@ G.Views.NewGistFormView = Backbone.View.extend({
 
     that.gist.gistFile = new G.Models.GistFile();
     that.gistFileFormView = new G.Views.NewGistFileFormView({
-      model: that.gist.gistFileFormView
+      model: that.gist.gistFile
     });
 
     that.$el.html(that.form.el);
@@ -27,9 +27,11 @@ G.Views.NewGistFormView = Backbone.View.extend({
     var that = this;
 
     var errors = this.form.commit({ validate: true });
+    console.log(that.gistFileFormView.model);
     that.collection.add(that.gist);
     that.gist.save();
 
+    console.log(that.gist.gistFile);
     console.log(errors);
   }
 
