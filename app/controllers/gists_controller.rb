@@ -15,7 +15,10 @@ class GistsController < ApplicationController
 	end
 
 	def create
+		#debugger
+		params[:gist][:gist_files_attributes] ||= []
 		@gist = current_user.gists.new(params[:gist])
+		@gist.gist_files ||= []
 		if @gist.save
 			render json: @gist
 		else

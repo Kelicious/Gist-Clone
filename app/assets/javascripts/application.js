@@ -12,9 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require backbone-rails
 //= require backbone-relational
 //= require backbone-forms
+//= require backbone.bootstrap-modal
+//= require list
 //
 //= require gist
 //

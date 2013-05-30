@@ -12,11 +12,6 @@ G.Views.NewGistFormView = Backbone.View.extend({
       model: that.gist
     }).render();
 
-    that.gist.gistFile = new G.Models.GistFile();
-    that.gistFileFormView = new G.Views.NewGistFileFormView({
-      model: that.gist.gistFile
-    });
-
     that.$el.html(that.form.el);
     that.$el.append("<button class='submit'>submit</button>");
 
@@ -27,13 +22,14 @@ G.Views.NewGistFormView = Backbone.View.extend({
     var that = this;
 
     var errors = this.form.commit({ validate: true });
-    console.log(that.gistFileFormView.model);
-    that.collection.add(that.gist);
-    that.gist.save();
 
-    console.log(that.gist.gistFile);
-    console.log(errors);
+    that.gist.save()
+    .done(function () {
+      that.collection.add(that.gist);
+      alert("Gist created!");
+    })
+    .fail(function (response) {
+      alert("Gist creation failed, error: " + response.responseJSON.join("\n"));
+    });
   }
-
-
 });
